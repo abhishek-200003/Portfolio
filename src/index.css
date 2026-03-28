@@ -924,3 +924,8 @@ section {
   align-items: center;
   gap: 4px;
 }
+.hero-indicator,
+.slider-dots,
+.scroll-indicator {
+  display: none !important;
+}
