@@ -327,7 +327,7 @@ const socialLinks = {
   github: "https://github.com/abhishek-200003",
   linkedin: "https://www.linkedin.com/in/abhishek-s2003",
   email: "mailto:abhisheks200327@gmail.com",
-  resume: "/public/resume/AbhishekS_Resume.pdf",
+  resume:"/public/resume/resume.pdf",
 };
 
 const skills = [
