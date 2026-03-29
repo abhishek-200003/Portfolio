@@ -277,7 +277,8 @@ a {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -618,13 +619,13 @@ section {
 }
 
 /* =====================================================
-   VSCODE CARD UI FIXES
+   VSCODE CARD UI FIXES (UPDATED FOR MOBILE)
    ===================================================== */
 
 .vsc-card {
   width: 100%;
   height: 100%;
-  min-height: 520px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   background: #0d1117;
@@ -635,17 +636,21 @@ section {
 }
 
 .vsc-titlebar {
-  height: 35px;
+  height: auto;
+  min-height: 35px;
   background: #161b22;
   display: flex;
-  align-items: center;
-  padding: 0 12px;
+  align-items: flex-start;
+  padding: 6px 12px;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .vsc-dots {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
+  margin-top: 4px;
 }
 
 .vsc-dot {
@@ -658,7 +663,11 @@ section {
   font-size: 12px;
   color: #8b949e;
   flex: 1;
-  text-align: center;
+  text-align: right;
+  max-width: 160px;
+  line-height: 1.2;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .vsc-main {
@@ -697,6 +706,7 @@ section {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .vsc-tabs {
@@ -704,6 +714,7 @@ section {
   background: #0d1117;
   display: flex;
   border-bottom: 1px solid #30363d;
+  overflow: hidden;
 }
 
 .vsc-tab {
@@ -716,6 +727,10 @@ section {
   background: #161b22;
   color: #8b949e;
   border-right: 1px solid #30363d;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .vsc-tab.active {
@@ -728,27 +743,33 @@ section {
   flex: 1;
   padding: 20px;
   background: #0d1117;
-  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-family: "Fira Code", "Cascadia Code", monospace;
   font-size: 14px;
   line-height: 1.6;
   overflow: auto;
 }
 
 .vsc-status-bar {
-  height: 22px;
+  height: auto;
+  min-height: 22px;
   background: #010409;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 4px 10px;
   font-size: 11px;
   color: #8b949e;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
-.vsc-status-left, .vsc-status-right {
+.vsc-status-left,
+.vsc-status-right {
   display: flex;
   align-items: center;
   gap: 12px;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .vsc-status-item {
@@ -1015,9 +1036,64 @@ section {
     overflow: hidden;
   }
 
+  /* 🔥 MOBILE VSCODE FIX */
   .vsc-card {
     min-height: 430px;
     border-radius: 12px;
+  }
+
+  .vsc-titlebar {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .vsc-title {
+    font-size: 10px;
+    max-width: 95px;
+    line-height: 1.1;
+    text-align: right;
+  }
+
+  .vsc-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .vsc-activity-bar {
+    width: 38px;
+    padding-top: 12px;
+    gap: 18px;
+  }
+
+  .vsc-activity-btn {
+    font-size: 16px;
+  }
+
+  .vsc-tabs {
+    height: 32px;
+  }
+
+  .vsc-tab {
+    font-size: 10px;
+    padding: 0 8px;
+    gap: 5px;
+  }
+
+  .vsc-content {
+    font-size: 11px;
+    padding: 14px;
+    line-height: 1.6;
+  }
+
+  .vsc-status-bar {
+    font-size: 9px;
+    padding: 4px 6px;
+    gap: 8px;
+  }
+
+  .vsc-status-left,
+  .vsc-status-right {
+    gap: 8px;
   }
 
   .skills-grid {
@@ -1140,11 +1216,56 @@ section {
     height: 48px;
   }
 
+  /* EXTRA SMALL MOBILE VSCODE FIX */
   .vsc-card {
     min-height: 390px;
   }
 
+  .vsc-title {
+    max-width: 75px;
+    font-size: 9px;
+  }
+
+  .vsc-content {
+    font-size: 10px;
+    padding: 12px;
+  }
+
+  .vsc-status-bar {
+    font-size: 8px;
+    padding: 4px 5px;
+  }
+
   .project-image-wrap {
     height: 190px;
+  }
+}
+
+/* ================================
+   FIXED MOBILE VSCODE LAYOUT
+================================ */
+
+@media (max-width: 768px) {
+  .about-code-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .about-code-card .vsc-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .about-code-card .vsc-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
   }
 }

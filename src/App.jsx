@@ -53,9 +53,9 @@ function VSCodeCard() {
 
   const fileIcon = (name) => {
     if (name.endsWith(".jsx"))
-      return <DiReact style={{ color: "#58a6ff", fontSize: 16 }} />;
+      return <DiReact style={{ color: "#58a6ff", fontSize: "clamp(12px, 2vw, 16px)" }} />;
     if (name.endsWith(".css"))
-      return <DiCss3 style={{ color: "#79c0ff", fontSize: 16 }} />;
+      return <DiCss3 style={{ color: "#79c0ff", fontSize: "clamp(12px, 2vw, 16px)" }} />;
     return null;
   };
 
@@ -64,11 +64,11 @@ function VSCodeCard() {
       className="vsc-card"
       style={{
         width: "100%",
-        maxWidth: 640,
+        maxWidth: "100%",
         background: C.base,
         color: C.text,
-        fontSize: 13,
-        borderRadius: 12,
+        fontSize: "clamp(10px, 1.8vw, 13px)",
+        borderRadius: "clamp(10px, 2vw, 12px)",
         overflow: "hidden",
         boxShadow: "0 25px 50px rgba(0,0,0,0.6)",
         fontFamily: "'Cascadia Code','Fira Code','Consolas',monospace",
@@ -84,43 +84,54 @@ function VSCodeCard() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "8px 12px",
+          padding: "clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 12px)",
           userSelect: "none",
+          flexWrap: "wrap",
+          gap: "8px",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ display: "flex", gap: 8 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "clamp(8px, 2vw, 16px)",
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ display: "flex", gap: "6px" }}>
             <span
               style={{
-                width: 12,
-                height: 12,
+                width: "clamp(8px, 1.8vw, 12px)",
+                height: "clamp(8px, 1.8vw, 12px)",
                 borderRadius: "50%",
                 background: "#ff5f56",
               }}
             />
             <span
               style={{
-                width: 12,
-                height: 12,
+                width: "clamp(8px, 1.8vw, 12px)",
+                height: "clamp(8px, 1.8vw, 12px)",
                 borderRadius: "50%",
                 background: "#ffbd2e",
               }}
             />
             <span
               style={{
-                width: 12,
-                height: 12,
+                width: "clamp(8px, 1.8vw, 12px)",
+                height: "clamp(8px, 1.8vw, 12px)",
                 borderRadius: "50%",
                 background: "#27c93f",
               }}
             />
           </div>
+
           <div
             style={{
               display: "flex",
-              gap: 12,
-              fontSize: 12,
+              gap: "clamp(6px, 1.5vw, 12px)",
+              fontSize: "clamp(8px, 1.5vw, 12px)",
               color: C.overlay1,
+              flexWrap: "wrap",
             }}
           >
             <span>File</span>
@@ -130,7 +141,15 @@ function VSCodeCard() {
           </div>
         </div>
 
-        <span style={{ fontSize: 11, color: C.overlay1 }}>
+        <span
+          style={{
+            fontSize: "clamp(8px, 1.3vw, 11px)",
+            color: C.overlay1,
+            textAlign: "right",
+            flex: 1,
+            minWidth: "120px",
+          }}
+        >
           Portfolio — Visual Studio Code
         </span>
 
@@ -138,8 +157,9 @@ function VSCodeCard() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 12,
+            gap: "clamp(6px, 1.5vw, 12px)",
             color: C.overlay1,
+            fontSize: "clamp(10px, 1.8vw, 14px)",
           }}
         >
           <VscChromeMinimize />
@@ -149,17 +169,17 @@ function VSCodeCard() {
       </div>
 
       {/* ── Body ── */}
-      <div style={{ display: "flex", flex: 1 }}>
+      <div style={{ display: "flex", flex: 1, minHeight: "clamp(220px, 45vw, 320px)" }}>
         {/* Activity Bar */}
         <div
           style={{
-            width: 48,
+            width: "clamp(36px, 7vw, 48px)",
             background: C.mantle,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "15px 0",
+            padding: "clamp(10px, 2vw, 15px) 0",
             borderRight: `1px solid ${C.surface0}`,
           }}
         >
@@ -167,9 +187,9 @@ function VSCodeCard() {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 20,
+              gap: "clamp(12px, 2.5vw, 20px)",
               color: C.overlay1,
-              fontSize: 22,
+              fontSize: "clamp(16px, 3vw, 22px)",
             }}
           >
             <VscFiles style={{ color: "#fff" }} />
@@ -178,13 +198,14 @@ function VSCodeCard() {
             <VscDebugAlt />
             <VscExtensions />
           </div>
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 18,
+              gap: "clamp(12px, 2vw, 18px)",
               color: C.overlay1,
-              fontSize: 22,
+              fontSize: "clamp(16px, 3vw, 22px)",
             }}
           >
             <VscAccount />
@@ -193,19 +214,26 @@ function VSCodeCard() {
         </div>
 
         {/* Editor Area */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
           {/* Tab bar */}
-          <div style={{ display: "flex", background: C.mantle }}>
+          <div
+            style={{
+              display: "flex",
+              background: C.mantle,
+              overflowX: "auto",
+              scrollbarWidth: "none",
+            }}
+          >
             {tabs.map((tab) => (
               <div
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 style={{
-                  padding: "8px 16px",
-                  fontSize: 12,
+                  padding: "clamp(6px, 1.5vw, 8px) clamp(10px, 2vw, 16px)",
+                  fontSize: "clamp(9px, 1.5vw, 12px)",
                   display: "flex",
                   alignItems: "center",
-                  gap: 8,
+                  gap: "6px",
                   cursor: "pointer",
                   background: tab === activeTab ? C.base : "#161b22",
                   color: tab === activeTab ? "#fff" : C.overlay1,
@@ -214,11 +242,13 @@ function VSCodeCard() {
                     tab === activeTab
                       ? "1px solid #f78166"
                       : "1px solid transparent",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
                 }}
               >
                 {fileIcon(tab)}
                 {tab}
-                <VscClose style={{ fontSize: 14, marginLeft: 4 }} />
+                <VscClose style={{ fontSize: "clamp(10px, 1.5vw, 14px)", marginLeft: 4 }} />
               </div>
             ))}
           </div>
@@ -226,12 +256,13 @@ function VSCodeCard() {
           {/* Code content */}
           <div
             style={{
-              padding: "20px",
+              padding: "clamp(10px, 2.5vw, 20px)",
               lineHeight: "1.6",
               background: C.base,
               flex: 1,
               display: "flex",
-              gap: "20px",
+              gap: "clamp(10px, 2vw, 20px)",
+              overflowX: "auto",
             }}
           >
             <div
@@ -239,16 +270,31 @@ function VSCodeCard() {
                 color: "#484f58",
                 textAlign: "right",
                 userSelect: "none",
-                fontSize: 13,
+                fontSize: "clamp(10px, 1.5vw, 13px)",
+                flexShrink: 0,
               }}
             >
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i}>{i + 1}</div>
               ))}
             </div>
-            <div style={{ color: C.text, fontSize: 14 }}>
+
+            <div
+              style={{
+                color: C.text,
+                fontSize: "clamp(10px, 1.8vw, 14px)",
+                minWidth: 0,
+              }}
+            >
               {activeTab === "Portfolio.jsx" ? (
-                <pre style={{ margin: 0, fontFamily: "inherit" }}>
+                <pre
+                  style={{
+                    margin: 0,
+                    fontFamily: "inherit",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
+                  }}
+                >
                   <span style={{ color: C.mauve }}>const</span>{" "}
                   <span style={{ color: C.blue }}>developer</span> = {"{"} <br />
                   &nbsp;&nbsp;<span style={{ color: C.blue }}>name</span>:{" "}
@@ -282,11 +328,13 @@ function VSCodeCard() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "2px 12px",
-          fontSize: 12,
+          padding: "clamp(2px, 1vw, 4px) clamp(8px, 2vw, 12px)",
+          fontSize: "clamp(8px, 1.4vw, 12px)",
+          flexWrap: "wrap",
+          gap: "8px",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "clamp(6px, 1.5vw, 12px)", flexWrap: "wrap" }}>
           <div
             style={{
               background: "#238636",
@@ -298,6 +346,7 @@ function VSCodeCard() {
           >
             <VscRemote /> main*
           </div>
+
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <VscError />
             <span>0</span>
@@ -305,7 +354,8 @@ function VSCodeCard() {
             <span>0</span>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "clamp(6px, 1.5vw, 12px)", flexWrap: "wrap" }}>
           <span>Ln 1, Col 1</span>
           <span>UTF-8</span>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
@@ -318,7 +368,6 @@ function VSCodeCard() {
     </div>
   );
 }
-
 /* ═══════════════════════════════════════════════════════════════
     UPDATED SKILLS USING PNG IMAGES
 ═══════════════════════════════════════════════════════════════ */
